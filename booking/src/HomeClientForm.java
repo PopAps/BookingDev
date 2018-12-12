@@ -53,6 +53,9 @@ public class HomeClientForm extends JFrame {
 		});
 		btnNewButton_1.setBounds(440, 202, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.setBounds(10, 11, 89, 23);
+		contentPane.add(btnLogout);
 	}
-
 }

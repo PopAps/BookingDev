@@ -17,7 +17,7 @@ public class ConnectMongoDB {
 		connectionString = new MongoClientURI("mongodb://booking:booking123@ds243212.mlab.com:43212/ox");
 	    Client = new MongoClient(connectionString);
 	    database = Client.getDatabase("ox");
-	   System.out.println("successful");
+	    System.out.println("ConnectMongoDB Process");
 
 	}
 	MongoDatabase getMongoDatabase() {

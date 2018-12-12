@@ -24,8 +24,10 @@ import java.awt.event.ActionEvent;
 public class SearchForm extends JFrame {
 
 	private JPanel contentPane;
-	public String room, date, timeStart, timeEnd, status,size;
+	public  String room, date, timeStart, timeEnd, status,size;
 	JDateChooser dateChooser = new JDateChooser();
+	 ListSearch listSearch;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -111,11 +113,15 @@ public class SearchForm extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+				System.out.println("UI Process");
 				RoomService roomService = new RoomService();
+				
 				ArrayList<Room> arr = roomService.getRoom(comboBoxSize.getSelectedItem().toString(),
 						dateChooser.getDate(), comboBoxTimeStart.getSelectedItem().toString(),
 						comboBoxTimeEnd.getSelectedItem().toString(), "", "");
+				
+				
+			
 //				 ArrayList<Room> arr = new ArrayList<>();
 //		          for(int i =0 ;i< 10;i++) {
 //		        	
@@ -123,11 +129,12 @@ public class SearchForm extends JFrame {
 //		        	  
 //		        	  
 //		          }
+				
 		          System.out.println(arr.size());
 		          if (arr.size() == 0) {
 						panels.removeAll();
-						ListSearch listSearch = new ListSearch();
-						listSearch.date.setText("------------------------Not found Room------------------------");
+						listSearch = new ListSearch();
+					    listSearch.date.setText("------------------------Not found Room------------------------");
 						listSearch.room.setText("");
 						listSearch.size.setText("");
 						listSearch.timeStart.setText("");
@@ -147,9 +154,7 @@ public class SearchForm extends JFrame {
 							date = (String) arr.get(i).date;
 							timeStart = (String) arr.get(i).timeStart;
 							timeEnd = (String) arr.get(i).timeEnd;
-
-							ListSearch listSearch = new ListSearch();
-						
+							    listSearch = new ListSearch();
 								listSearch.size.setText(size);
 								listSearch.date.setText(date);
 								listSearch.room.setText(room);
@@ -160,7 +165,8 @@ public class SearchForm extends JFrame {
 								panels.revalidate();
 								int height = (int) panels.getPreferredSize().getHeight();
 								scroll.getVerticalScrollBar().setValue(height);
-						
+								
+							
 						}
 					}
 		          
@@ -169,12 +175,20 @@ public class SearchForm extends JFrame {
 		btnSearch.setBounds(514, 119, 89, 23);
 		panel.add(btnSearch);
 		
+		
+		
+		
 		JButton btnBooking = new JButton("Booking");
-		btnBooking.setBounds(514, 85, 89, 23);
+		listSearch = new ListSearch();
+	    listSearch.getBooking(btnBooking);
+		
+	    btnBooking.setBounds(514, 85, 89, 23);
 		panel.add(btnBooking);
 		
 		
-		dateChooser.setDateFormatString("d-MMM-yyyy");
+		
+		
+		dateChooser.setDateFormatString("MMM d, YYYY");
 		Date date = new Date();
 		dateChooser.setDate(date);
 		dateChooser.setBounds(103, 72, 111, 20);

@@ -12,9 +12,19 @@ public class RoomService {
 	   arr = new ArrayList<>();
    }
 	public static ArrayList<Room> getRoom(String size, Date date, String timeStart, String timeEnd,String room, String status){
-		 RoomDao roomDao = new RoomDao();
+		    
+		    System.out.println("Service Process");
+		    
+		    RoomDao roomDao = new RoomDao();
             String dates = DateFormat.getDateInstance().format(date);
+            
+            
 			arr.add(new Room(size,dates,timeStart,timeEnd,room,status));
+			if(arr.isEmpty()) {
+				return arr;
+			}else {
+				
+			}
 		    ArrayList<Room> result = roomDao.getRoomAll(arr);
 
 		return result;
@@ -24,9 +34,9 @@ public class RoomService {
 
 		
 	}
-	public static void updateBooking() {
-		
-		//arr2.add(new Room())
-	}
+//	public static void updateBooking(ArrayList<Booking> arr2) {
+//		
+//		//arr2.add(new Room())
+//	}
 
 }

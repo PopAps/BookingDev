@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class LoginForm {
 
@@ -96,10 +97,31 @@ public class LoginForm {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
+				ArrayList<User> arr = new ArrayList<>();
+				arr.add(new User(username.getText(),password.getText(),""));
 				
-				HomeClientForm client = new HomeClientForm();
-				client.setVisible(true);
-				frame.setVisible(false);
+				LoginService login = new LoginService();
+				ArrayList<User> arr2 = login.checkLogin(arr);
+				System.out.println(username.getText());
+				System.out.println(arr2.size());
+				
+				if(arr2.size()==0) {
+					 
+				      //warming
+					
+				}else {
+					if(arr2.get(0).status.equals("client")) {
+							HomeClientForm client = new HomeClientForm();
+				            client.setVisible(true);
+				            frame.setVisible(false);
+					}else {
+						
+						//go admin
+						
+						
+					}
+				}
+			
 				
 			}
 		});
